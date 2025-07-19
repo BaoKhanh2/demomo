@@ -1,0 +1,2108 @@
+{
+	"info": {
+		"_postman_id": "6d064683-e6ee-4ffc-9291-3328d4ab1f24",
+		"name": "My Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "product",
+					"item": [
+						{
+							"name": "http://localhost:8080/products/create",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8060/products/26b310d9-8b85-4303-b805-3366a366e9e2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"products",
+										"26b310d9-8b85-4303-b805-3366a366e9e2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 6",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": 3,\r\n  \"brand\": \"Coolmate\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9020/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9020",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": 2,\r\n  \"brand\": \"Coolmate\",\r\n  \"variants\": [\r\n    {\r\n      \"price\": 199000,\r\n      \"stock\": 100,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 1\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"stock\": 80,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 3\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 4\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8060/products/category/c8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"products",
+										"category",
+										"c8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"12\",\r\n    \"name\":\"Áo\",\r\n    \"description\":\"Áo\",\r\n    \"brand\": \"Col\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8060/products/769bbe56-e40a-49ce-a251-030caf2ecf6b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"products",
+										"769bbe56-e40a-49ce-a251-030caf2ecf6b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"12\",\r\n    \"name\":\"Áo\",\r\n    \"description\":\"Áo\",\r\n    \"brand\": \"Col\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8060/products/0c9b8969-058c-41ff-8eee-ff2125c05d12",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"products",
+										"0c9b8969-058c-41ff-8eee-ff2125c05d12"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "product Copy",
+					"item": [
+						{
+							"name": "http://localhost:8080/products/create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": \"c10\",\r\n  \"brand\": \"Coolmate\",\r\n  \"variants\": [\r\n    {\r\n      \"price\": 199000,\r\n      \"stock\": 100,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": \"a2\",\r\n          \"attributeValueId\": \"v4\"\r\n        },\r\n        {\r\n          \"attributeId\": \"a2\",\r\n          \"attributeValueId\": \"v5\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"stock\": 80,\r\n      \"price\": 200000,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": \"a2\",\r\n          \"attributeValueId\": \"v6\"\r\n        },\r\n        {\r\n          \"attributeId\": \"a2\",\r\n          \"attributeValueId\": \"v7\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8070/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8070",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 6",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": 3,\r\n  \"brand\": \"Coolmate\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9020/products/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9020",
+									"path": [
+										"products",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": 2,\r\n  \"brand\": \"Coolmate\",\r\n  \"variants\": [\r\n    {\r\n      \"price\": 199000,\r\n      \"stock\": 100,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 1\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"stock\": 80,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 3\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 4\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9021/products/category/c8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9021",
+									"path": [
+										"products",
+										"category",
+										"c8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"12\",\r\n    \"name\":\"Áo\",\r\n    \"description\":\"Áo\",\r\n    \"brand\": \"Col\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/products",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/products/14",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"14"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/products/create Copy 4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": 2,\r\n  \"brand\": \"Coolmate\",\r\n  \"variants\": [\r\n    {\r\n      \"price\": 199000,\r\n      \"stock\": 100,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 1\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"stock\": 80,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 3\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 4\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9021/products/1ceeb06f-11d4-4b71-acb3-c7af7f0e0951",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9021",
+									"path": [
+										"products",
+										"1ceeb06f-11d4-4b71-acb3-c7af7f0e0951"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "http://localhost:8080/categories/tree",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8060/categories/tree",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"categories",
+										"tree"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/categories/tree Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Thanh Pham\",\r\n    \"description\":\"hello word\",\r\n    \"parentId\": \"c6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9021/categories/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9021",
+									"path": [
+										"categories",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/categories/tree Copy 2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8060/categories/c6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"categories",
+										"c6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/categories/tree Copy 3",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": \"c99\",\r\n        \"name\": \"Thanh PhamPham1Pham1\",\r\n        \"description\": \"Hello WorldWorld1World1\",\r\n        \"parentId\": \"c6\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8060/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/categories/tree Copy 4",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9021/categories/c1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9021",
+									"path": [
+										"categories",
+										"c1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "variant",
+					"item": [
+						{
+							"name": "new variant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9021/variants/price/cad71428-2efa-48ac-9ea8-1ca48445f8c2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9021",
+									"path": [
+										"variants",
+										"price",
+										"cad71428-2efa-48ac-9ea8-1ca48445f8c2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "new variant Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9021/variants/price/cad71428-2efa-48ac-9ea8-1ca48445f8c2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9021",
+									"path": [
+										"variants",
+										"price",
+										"cad71428-2efa-48ac-9ea8-1ca48445f8c2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product_Image",
+					"item": [
+						{
+							"name": "http://localhost:8060/images/variant/1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8060/images/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"images",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8060/images/variant/1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8060/images/variant/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"images",
+										"variant",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8060/images/create Copy",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8060/images/90e8d869-1d84-4e0a-8dab-ea2b253a2bec",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"images",
+										"90e8d869-1d84-4e0a-8dab-ea2b253a2bec"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8060/images/create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "variantId",
+											"value": "0e0c17dc-0c41-4e4c-b012-eab090642586",
+											"type": "default"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/D:/Users/Desktop/Image/Capture101.PNG"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8060/images/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8060",
+									"path": [
+										"images",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "http://localhost:8090/inventories/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8040/inventories/71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"inventories",
+								"71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8090/inventories/ Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"71\",\r\n    \"number\": 10\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8040/inventories/reserve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"inventories",
+								"reserve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8090/inventories/ Copy 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 72,\r\n    \"quantity\": 1000,\r\n    \"threshold\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8040/inventories/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"inventories",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8090/inventories/ Copy 3",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"71\",\r\n    \"number\":1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8040/inventories/release",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"inventories",
+								"release"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8090/inventories/ Copy 4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8040/inventories/71/check",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"inventories",
+								"71",
+								"check"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "http://localhost:9000/orders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 2,\r\n    \"items\": [{\r\n        \"variantId\":149,\r\n        \"quantity\":5\r\n        },\r\n        {\r\n        \"variantId\":150,\r\n        \"quantity\":5\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9000/orders Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/orders/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"orders",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9000/orders Copy 2",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/orders/15/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"orders",
+								"15",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "keycloak",
+			"item": [
+				{
+					"name": "get token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "default"
+								},
+								{
+									"key": "client_id",
+									"value": "my-app",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "a88513e3-0aac-4b9e-ba59-6d975316abd8.98a57c1a-5d9c-449e-84af-2e8e19991abf.51a05e4c-5432-4844-99b3-bffe6309a827",
+									"type": "default"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost:3000",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/realms/demo_realm/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"demo_realm",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "API test",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyMmIwYjhlMC01ZjIxLTQzNmQtYjQ1Zi0xY2IxMDcyYzU2NDAifQ.eyJleHAiOjE3NDczMzAxNjEsImlhdCI6MTc0NzMyODM3NCwianRpIjoiYzFiNmU1NWUtODI3Zi00ZTE2LTk2NzAtNTY4OWY2MWU3YjVhIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vX3JlYWxtIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vX3JlYWxtIiwic3ViIjoiMGU2MzI0MGItODRiNS00YzdmLThjMmYtZjdjZDk5YmRhMGUzIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6Im15LWFwcCIsInNlc3Npb25fc3RhdGUiOiI5OGE1N2MxYS01ZDljLTQ0OWUtODRhZi0yZThlMTk5OTFhYmYiLCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiOThhNTdjMWEtNWQ5Yy00NDllLTg0YWYtMmU4ZTE5OTkxYWJmIn0.tN0ZJD3XiiDK8JVqtUBekFgRSgx6fydsuh8gcX8nckbgMf_kvB2D-Kkomco_LTyGNhtmURWdoVepLvweYfnjXQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIyMmIwYjhlMC01ZjIxLTQzNmQtYjQ1Zi0xY2IxMDcyYzU2NDAifQ.eyJleHAiOjE3NDczMzAxNjEsImlhdCI6MTc0NzMyODM3NCwianRpIjoiYzFiNmU1NWUtODI3Zi00ZTE2LTk2NzAtNTY4OWY2MWU3YjVhIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vX3JlYWxtIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9kZW1vX3JlYWxtIiwic3ViIjoiMGU2MzI0MGItODRiNS00YzdmLThjMmYtZjdjZDk5YmRhMGUzIiwidHlwIjoiUmVmcmVzaCIsImF6cCI6Im15LWFwcCIsInNlc3Npb25fc3RhdGUiOiI5OGE1N2MxYS01ZDljLTQ0OWUtODRhZi0yZThlMTk5OTFhYmYiLCJzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwic2lkIjoiOThhNTdjMWEtNWQ5Yy00NDllLTg0YWYtMmU4ZTE5OTkxYWJmIn0.tN0ZJD3XiiDK8JVqtUBekFgRSgx6fydsuh8gcX8nckbgMf_kvB2D-Kkomco_LTyGNhtmURWdoVepLvweYfnjXQ",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/private",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"private"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "http://localhost:8070/users/register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"873hfskf\",\r\n    \"fullName\":\"ffffffffff fffffffffffffffffff\",\r\n    \"phoneNumber\":\"0224636745\",\r\n    \"address\":\"1235B đường Lê Lợi, Phường 6, Tuy Hòa\",\r\n    \"avatarUrl\":\"https://example.com/avatar.jpg\",\r\n    \"gender\":\"MALE\",\r\n    \"dateOfBirth\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/deactivate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-User-Id",
+								"value": "999",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"ffffffffff fffffffffffffffffff\",\r\n    \"phoneNumber\":\"0924636645\",\r\n    \"address\":\"1235B đường Lê Lợi, Phường 6, Tuy Hòa\",\r\n    \"avatarUrl\":\"https://example.com/avatar.jpg\",\r\n    \"gender\":\"MALE\",\r\n    \"dateOfBirth\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/update/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"update",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/ban",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/ban",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"ban"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-User-Id",
+								"value": "0873hfs1",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/my-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"my-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/search?keyword=name&value=thanh",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/search?keyword=name&value=thành",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "name"
+								},
+								{
+									"key": "value",
+									"value": "thành"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "change",
+			"item": [
+				{
+					"name": "http://localhost:8070/users/register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"f08f74ce-b51d-41be-8ea8-91ed3835a232\",\r\n    \"fullName\":\"Phạm Văn Thành USER\",\r\n    \"phoneNumber\":\"0924636451\",\r\n    \"address\":\"1235B đường Lê Lợi, Phường 6, Tuy Hòa\",\r\n    \"avatarUrl\":\"https://example.com/avatar.jpg\",\r\n    \"gender\":\"MALE\",\r\n    \"dateOfBirth\":\"2000-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/deactivate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-User-Id",
+								"value": "bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"f fffffffffffffffffff\",\r\n    \"phoneNumber\":\"0924635645\",\r\n    \"address\":\"1235B đ Lê Lợi, Phường 6, Tuy Hòa\",\r\n    \"avatarUrl\":\"https://exle.com/avatar.jpg\",\r\n    \"gender\":\"FEMALE\",\r\n    \"dateOfBirth\":\"2002-02-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/update/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"update",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/ban",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/ban",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"ban"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/my-info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-User-Id",
+								"value": "bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8070/users/my-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"my-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-User-Id",
+								"value": "1",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8070/users/bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/search?keyword=name&value=thanh",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/search?keyword=phone&value=0883647521",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "phone"
+								},
+								{
+									"key": "value",
+									"value": "0883647521"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8070/users/search?keyword=name&value=thanh Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8070/users/exist?userId=bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8070",
+							"path": [
+								"users",
+								"exist"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "bcedc5c3-dc7f-43de-bbaa-2a1c47e65f7a"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "gateway",
+			"item": [
+				{
+					"name": "user service",
+					"item": [
+						{
+							"name": "http://localhost:8000/user/users/1",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGWjJqMXhrOGtENXFyWEFpQzNORE11S1V2ZjVCUTdXZUtCWWVQX0FYY04wIn0.eyJleHAiOjE3NDk0ODk2MzUsImlhdCI6MTc0OTQ4OTMzNSwianRpIjoiZWIxZDNlYWUtMjVmNC00ODM0LWFkZWYtNzkyMGYwNzQ2ZDdjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9teXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjM0NjQxN2QxLWY5YWItNDFlYy04NWU5LTFjMzUwOGUyMjRlYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImdhdGV3YXktY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImQ0M2MyYjE0LTM3YmItNDlkZi1hZmFiLTkyMzY4NDU3ZjU1YyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbXlyZWFsbSIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJBRE1JTiIsIlVTRVIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiJkNDNjMmIxNC0zN2JiLTQ5ZGYtYWZhYi05MjM2ODQ1N2Y1NWMiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJQaGFtIFRoYW5oIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJQaGFtIiwiZmFtaWx5X25hbWUiOiJUaGFuaCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.CDy8vxyDlbknjKNIHcjwBrfPrdEBdeHW9CgNLVhPWkFpt2j4Gp0Dx--biSshZcn5VuJnkZHOcttOIL-r0OM1c8PU28IbexA_PjyHLtm8hV6mpIeEfkxTPj5ink1s5V61EbY-TA1HCYrv0os5pDuIspJV1lM75evzjHGjTxR2rf3n9K2q1AFtI5fJZi-nAxJgn8G_t_r5jPVsPS4GJpdTIZD58-0QhMnr5I1UF_iynqcwGyLXgCQdI5C2jJav2HAFVlaE6USfEKOTWWKMABAw3E2dJWnzjbezjj0t0M2wdkVwIeN4XcN-dk9uGQ22ARn8kL38yJC_VWuL_vFEn_8idA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/user/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8000/user/users/1 Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGWjJqMXhrOGtENXFyWEFpQzNORE11S1V2ZjVCUTdXZUtCWWVQX0FYY04wIn0.eyJleHAiOjE3NDk0ODk2MzUsImlhdCI6MTc0OTQ4OTMzNSwianRpIjoiZWIxZDNlYWUtMjVmNC00ODM0LWFkZWYtNzkyMGYwNzQ2ZDdjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9teXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjM0NjQxN2QxLWY5YWItNDFlYy04NWU5LTFjMzUwOGUyMjRlYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImdhdGV3YXktY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImQ0M2MyYjE0LTM3YmItNDlkZi1hZmFiLTkyMzY4NDU3ZjU1YyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbXlyZWFsbSIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJBRE1JTiIsIlVTRVIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiJkNDNjMmIxNC0zN2JiLTQ5ZGYtYWZhYi05MjM2ODQ1N2Y1NWMiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJQaGFtIFRoYW5oIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdCIsImdpdmVuX25hbWUiOiJQaGFtIiwiZmFtaWx5X25hbWUiOiJUaGFuaCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.CDy8vxyDlbknjKNIHcjwBrfPrdEBdeHW9CgNLVhPWkFpt2j4Gp0Dx--biSshZcn5VuJnkZHOcttOIL-r0OM1c8PU28IbexA_PjyHLtm8hV6mpIeEfkxTPj5ink1s5V61EbY-TA1HCYrv0os5pDuIspJV1lM75evzjHGjTxR2rf3n9K2q1AFtI5fJZi-nAxJgn8G_t_r5jPVsPS4GJpdTIZD58-0QhMnr5I1UF_iynqcwGyLXgCQdI5C2jJav2HAFVlaE6USfEKOTWWKMABAw3E2dJWnzjbezjj0t0M2wdkVwIeN4XcN-dk9uGQ22ARn8kL38yJC_VWuL_vFEn_8idA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-User-Id",
+										"value": "jjjjjjjjjjjjj",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/user/users/my-info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"my-info"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "keycloak",
+					"item": [
+						{
+							"name": "admin login",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "grant_type",
+											"value": "password_credentials",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "default"
+										},
+										{
+											"key": "client_id",
+											"value": "gateway-client",
+											"type": "default"
+										},
+										{
+											"key": "client_secret",
+											"value": "WMwM3VrJkWmgmQnz2g6Pv6WZpMzBNsSV",
+											"type": "default"
+										},
+										{
+											"key": "username",
+											"value": "test",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "test",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/realms/myrealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"realms",
+										"myrealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user login",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "grant_type",
+											"value": "password_credentials",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "default"
+										},
+										{
+											"key": "client_id",
+											"value": "gateway-client",
+											"type": "default"
+										},
+										{
+											"key": "client_secret",
+											"value": "WMwM3VrJkWmgmQnz2g6Pv6WZpMzBNsSV",
+											"type": "default"
+										},
+										{
+											"key": "username",
+											"value": "user",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "user",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/realms/myrealm/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"realms",
+										"myrealm",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "product-service",
+					"item": [
+						{
+							"name": "product",
+							"item": [
+								{
+									"name": "http://localhost:8080/products/create Copy",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Áo thun tay ngắn\",\r\n  \"description\": \"Áo thun cotton 100%, thoáng mát\",\r\n  \"categoryId\": 2,\r\n  \"brand\": \"Coolmate\",\r\n  \"variants\": [\r\n    {\r\n      \"price\": 199000,\r\n      \"stock\": 100,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 1\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 2\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"stock\": 80,\r\n      \"attributes\": [\r\n        {\r\n          \"attributeId\": 1,\r\n          \"attributeValueId\": 3\r\n        },\r\n        {\r\n          \"attributeId\": 2,\r\n          \"attributeValueId\": 4\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/product/products/category/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"product",
+												"products",
+												"category",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "category",
+							"item": [
+								{
+									"name": "http://localhost:8080/categories/tree",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8000/product/categories/tree",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"product",
+												"categories",
+												"tree"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "user-service",
+					"item": [
+						{
+							"name": "http://localhost:8070/users/register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"tddbfjk\",\r\n    \"fullName\":\"ffffffffff fffffffffffffffffff\",\r\n    \"phoneNumber\":\"0924636645\",\r\n    \"address\":\"1235B đường Lê Lợi, Phường 6, Tuy Hòa\",\r\n    \"avatarUrl\":\"https://example.com/avatar.jpg\",\r\n    \"gender\":\"MALE\",\r\n    \"dateOfBirth\":\"2000-01-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/user/users/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8070/users/deactivate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-User-Id",
+										"value": "0873hfs1",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/user/users/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8070/users/ban",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/user/users/ban",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"ban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8070/users/1",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-User-Id",
+										"value": "873hfskf33",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/user/users/my-info",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"my-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8000/user/users/1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"tddbfjk\",\r\n    \"fullName\":\"ffffffffff fffffffffffffffffff\",\r\n    \"phoneNumber\":\"0924636645\",\r\n    \"address\":\"1235B đường Lê Lợi, Phường 6, Tuy Hòa\",\r\n    \"avatarUrl\":\"https://example.com/avatar.jpg\",\r\n    \"gender\":\"MALE\",\r\n    \"dateOfBirth\":\"2000-01-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/user/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8070/users/search?keyword=name&value=thanh",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/user/users/search?keyword=name&value=thành",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"users",
+										"search"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": "name"
+										},
+										{
+											"key": "value",
+											"value": "thành"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"a@gmail.com\",\r\n  \"message\": \"Xin chào Kafka RabbitMQ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9010/api/test",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9010",
+							"path": [
+								"api",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "_file",
+			"item": [
+				{
+					"name": "http://localhost:8083/images/upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Users/Desktop/Image/Capture101.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8050/images/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"images",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/images/upload Copy 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileId",
+									"value": "1Iu8jruYImgl0dl-L1brzASUGNj773Wgh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8050/images/download",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"images",
+								"download"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8083/images/upload Copy 4",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fileId",
+									"value": "1Iu8jruYImgl0dl-L1brzASUGNj773Wgh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8050/images/download",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"images",
+								"download"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "file",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Users/Desktop/Image/Capture100.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8050/files/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Users/Desktop/Image/Capture100.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8050/files/delete?fileId=10RJcD3hlCnrpuUGVHLWfJ7UNX5wgIJxn",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8050",
+							"path": [
+								"files",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "fileId",
+									"value": "10RJcD3hlCnrpuUGVHLWfJ7UNX5wgIJxn"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

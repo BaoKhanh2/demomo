@@ -1,0 +1,191 @@
+
+/* Category menu modern, horizontal, responsive */
+.category-bar {
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 16px 20px;
+  font-family: 'Jost', 'Urbanist', Arial, sans-serif;
+  position: relative;
+  z-index: 30;
+  border-radius: 8px;
+  margin: 0 auto 24px auto;
+  max-width: 100%;
+  border: 1px solid #e9ecef;
+  min-height: 80px;
+}
+.category-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.04rem;
+  font-weight: 600;
+  font-family: 'Jost', 'Urbanist', Arial, sans-serif;
+  align-items: stretch;
+  background: none;
+}
+.category-menu li {
+  position: relative;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 100;
+}
+.category-menu .category-parent {
+  color: #495057;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Jost', 'Urbanist', Arial, sans-serif;
+  font-size: 1.04rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.3;
+}
+.category-menu .category-parent:hover,
+.category-menu li:hover > .category-parent {
+  color: #007bff;
+  background: rgba(0,123,255,0.05);
+}
+.category-menu li:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-color: #007bff;
+  box-shadow: 0 4px 12px 0 rgba(0,123,255,0.2);
+  transform: translateY(-2px);
+  z-index: 10000;
+}
+.sub-category-menu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 0;
+  width: 150px;
+  z-index: 9999;
+  display: none;
+  font-family: 'Jost', 'Urbanist', Arial, sans-serif;
+  border: 1px solid #dee2e6;
+  overflow: hidden;
+}
+.category-menu li:hover > .sub-category-menu,
+.category-menu li:focus-within > .sub-category-menu {
+  display: block;
+}
+.sub-category-menu.show {
+  display: block;
+}
+.sub-category-menu li {
+  list-style: none;
+  width: 150px;
+  height: 50px;
+  margin: 0;
+  border-radius: 0;
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #f1f3f4;
+  box-shadow: none;
+}
+.sub-category-menu li:last-child {
+  border-bottom: none;
+}
+.sub-category-menu a.sub-category-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: #495057;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 0;
+  font-family: 'Jost', 'Urbanist', Arial, sans-serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+}
+.sub-category-menu a.sub-category-item:hover {
+  background: #f8f9fa;
+  color: #007bff;
+}
+@media (max-width: 900px) {
+  .category-menu {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    font-size: 1rem;
+  }
+  .category-menu li {
+    width: 130px;
+    height: 45px;
+  }
+  .category-menu .category-parent {
+    font-size: 0.98rem;
+    padding: 10px 12px;
+  }
+  .category-bar {
+    padding: 12px 16px;
+    min-height: 70px;
+  }
+  .sub-category-menu {
+    width: 130px;
+  }
+  .sub-category-menu li {
+    width: 130px;
+    height: 45px;
+  }
+}
+@media (max-width: 700px) {
+  .category-menu {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .category-menu li {
+    width: 110px;
+    height: 40px;
+  }
+  .category-menu .category-parent {
+    font-size: 0.95rem;
+    padding: 8px 10px;
+  }
+  .category-bar {
+    padding: 10px 12px;
+    min-height: 60px;
+  }
+  .sub-category-menu {
+    width: 110px;
+    left: 0;
+    top: 100%;
+  }
+  .sub-category-menu li {
+    width: 110px;
+    height: 40px;
+  }
+}

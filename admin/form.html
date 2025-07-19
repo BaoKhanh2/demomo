@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Form | Simple Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="vendors/bootstrap/css/bootstrap-4.3.1/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/simple-custom.css">
+	<link rel="stylesheet" type="text/css" href="vendors/icon/mdi/css/materialdesignicons.min.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="col-md-2 sidebar">
+					<div class="brand">
+						<a href="#" class="brand-name">Simple Admin</a>
+					</div>
+					<div class="sidebar-sticky">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a href="dashboard.html" class="nav-link"><i class="mdi mdi-monitor"></i> Dashboard</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="mdi mdi-shape-outline"></i> UI Components <span class="badge badge-info">New</span><i class="mdi mdi-chevron-down float-right pr-2"></i></a>
+								<div class="collapse" id="collapseExample">
+									<a class="nav-link" href="button.html"><i class="mdi mdi-circle-medium"></i> Buttons</a>
+								    <a class="nav-link" href="chart.html"><i class="mdi mdi-circle-medium"></i> Chart</a>
+								    <a class="nav-link" href="input.html"><i class="mdi mdi-circle-medium"></i> Input</a>
+								    <a class="nav-link" href="modal.html"><i class="mdi mdi-circle-medium"></i> Modal</a>
+								    <a class="nav-link" href="widget.html"><i class="mdi mdi-circle-medium"></i> Widget</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a href="form.html" class="nav-link active"><i class="mdi mdi-lead-pencil"></i> Form</a>
+							</li>
+							<li class="nav-item">
+  								<a href="user-management.html" class="nav-link"><i class="mdi mdi-account-circle"></i> User</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="table.html" class="nav-link"><i class="mdi mdi-table"></i> Data Table <button class="btn btn-dark-base btn-rounded float-right btn-sm"><i class="mdi mdi-plus"></i></button></a>
+							</li>
+						</ul>
+					</div>
+					<div class="nav-bottom">
+						<ul class="nav">
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-account"></i></a></li>
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-message"></i></a></li>
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-bell"></i></a></li>
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-power"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<main class="col-md-9 col-lg-10" role="main">
+				<div class="container">
+					<div class="content-header mt-2 mb-3">
+						<h2 class="text-header">User Form</h2>
+					</div>
+					<div class="row basic mb-3">
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-body">
+									<label class="title-body">Thông tin người dùng</label>
+									<div class="form-group">
+										<label for="fullName">Họ tên</label>
+										<input type="text" class="form-control" id="fullName" placeholder="Nhập họ và tên">
+									</div>
+									<div class="form-group">
+										<label for="phoneNumber">Số điện thoại</label>
+										<input type="text" class="form-control" id="phoneNumber" placeholder="Nhập số điện thoại">
+									</div>
+									<div class="form-group">
+										<label for="address">Địa chỉ</label>
+										<textarea class="form-control" id="address" placeholder="Nhập địa chỉ"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="dateOfBirth">Ngày sinh</label>
+										<input type="date" class="form-control" id="dateOfBirth">
+									</div>
+									<div class="form-group">
+										<label>Giới tính</label>
+										<div class="d-flex radio-b">
+											<label><input type="radio" name="gender" value="MALE"> Nam</label>
+											<label class="ml-5"><input type="radio" name="gender" value="FEMALE"> Nữ</label>
+										</div>
+									</div>
+									<button class="btn btn-water-mid" onclick="submitUser()">Submit</button>
+									<button class="btn btn-secondary" onclick="location.reload()">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+
+<!-- Jquery -->
+<script src="vendors/bootstrap/js/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="vendors/bootstrap/js/bootstrap-4.3.1/bootstrap.min.js"></script>
+<!-- Popper -->
+<script src="vendors/bootstrap/js/popper/popper.min.js"></script>
+<script>
+	async function submitUser() {
+		const fullName= document.getElementById("fullName").value;
+		const phoneNumber= document.getElementById("phoneNumber").value;
+		const address= document.getElementById("address").value;
+		const dateOfBirth=document.getElementById("dateOfBirth").value;
+		const gender=document.querySelector('input[name="gender"]:checked')?.value;
+		const token = localStorage.getItem("token");
+		
+		const user ={ 
+			id: Math.random().toString(36).substring(2,10),
+			fullName,
+			phoneNumber,
+			address,
+			avatarUrl:"https://example.com/avatar.jpg", 
+			gender,
+			dateOfBirth
+		};
+		try{
+		const res= await fetch(`http://localhost:8000/user/users/register`,{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body: JSON.stringify(user)
+		});
+		const data = await res.json();
+		if(res.ok){
+			alert("Tạo người dùng thành công");
+			window.location.href="table.html";
+
+		}else{
+			 alert(" Lỗi: " + (data.message || JSON.stringify(data)));
+		}
+	}catch(e)	{
+		console.error("Lỗi gửi yêu cầu",e);
+		alert("Không thể kết nối đến máy chủ");
+		}
+		
+	}
+	
+	</script>
+</body>
+</html>
