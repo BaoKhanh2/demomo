@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+    <link rel="stylesheet" href="assets/css/category-menu-custom.css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e9; color: #2e7d32; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <!-- Category menu -->
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <div class="category-bar">
+        <ul id="categoryMenu" class="category-menu"></ul>
+      </div>
+    </div>
+
+    <h1>API Test</h1>
+    
+    <button onclick="testCategories()">Test Categories API</button>
+    <button onclick="testProducts()">Test Products API</button>
+    <button onclick="testCategoryProducts()">Test Category Products API</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const resultsDiv = document.getElementById('results');
+        
+        function addResult(title, data, isError = false) {
+            const div = document.createElement('div');
+            div.className = `result ${isError ? 'error' : 'success'}`;
+            div.innerHTML = `
+                <h3>${title}</h3>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+            resultsDiv.appendChild(div);
+        }
+        
+        async function testCategories() {
+            try {
+                const response = await fetch('http://localhost:8000/product/categories/tree');
+                const data = await response.json();
+                addResult('Categories API', data);
+            } catch (error) {
+                addResult('Categories API Error', error.message, true);
+            }
+        }
+        
+        async function testProducts() {
+            try {
+                const response = await fetch('http://localhost:8060/products');
+                const data = await response.json();
+                addResult('Products API', data);
+            } catch (error) {
+                addResult('Products API Error', error.message, true);
+            }
+        }
+        
+        async function testCategoryProducts() {
+            try {
+                const response = await fetch('http://localhost:8000/product/products/category/c10');
+                const data = await response.json();
+                addResult('Category Products API (c10)', data);
+            } catch (error) {
+                addResult('Category Products API Error', error.message, true);
+            }
+        }
+    </script>
+
+    <!-- Category Menu Scripts -->
+    <script src="./js/utils/helpers.js"></script>
+    <script src="./js/api/apiClient.js"></script>
+    <script src="./js/categories.js"></script>
+</body>
+</html>

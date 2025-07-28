@@ -1,0 +1,253 @@
+/* Category Menu Custom Styles */
+
+/* Override global để full màn hình */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden;
+}
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* Override navbar để full màn hình */
+.section-navbar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section-navbar .container {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 1.8rem 2.4rem !important;
+}
+
+.section-navbar .top_txt .head.container {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.8rem 2.4rem !important;
+}
+
+/* Category bar full màn hình */
+.category-bar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 12px 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.category-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.category-menu li {
+  position: relative;
+}
+
+.category-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: block;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.category-menu a:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Override cho full màn hình - Content areas */
+.section-hero .container,
+.section-products .container,
+.section-extra-product .container,
+.addToCartElement .container {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 2.4rem !important;
+}
+
+/* Đặc biệt cho trang products */
+.section-products.container {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 2.4rem !important;
+}
+
+/* Override cho main content area */
+main {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Override cho tất cả container */
+.container {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 2.4rem !important;
+}
+
+/* Chỉ giữ padding cho text content, loại bỏ max-width */
+.section-hero .grid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Footer full màn hình */
+.section-footer {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 2.4rem 0 !important;
+}
+
+.footer-container.container {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 2.4rem !important;
+}
+
+.category-parent {
+  font-weight: 600 !important;
+}
+
+.sub-category-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  min-width: 200px;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+
+.category-menu li:hover .sub-category-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.sub-category-menu li {
+  display: block;
+}
+
+.sub-category-item {
+  color: #333 !important;
+  background: transparent !important;
+  padding: 8px 20px !important;
+  border-radius: 0 !important;
+  font-weight: 400 !important;
+  font-size: 0.9rem !important;
+}
+
+.sub-category-item:hover {
+  background: #f8f9fa !important;
+  color: #007bff !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .category-menu a {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .sub-category-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: rgba(255,255,255,0.1);
+    margin-top: 5px;
+  }
+  
+  .sub-category-item {
+    color: white !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .sub-category-item:hover {
+    background: rgba(255,255,255,0.2) !important;
+    color: white !important;
+  }
+}
+
+/* Animation cho category menu */
+.category-menu li {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hiệu ứng loading cho category menu */
+.category-menu.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+}
+
+.category-menu.loading::after {
+  content: "🔄 Đang tải danh mục...";
+  color: white;
+  font-weight: 500;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}

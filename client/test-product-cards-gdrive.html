@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Google Drive Images - Product Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .debug-info {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .status {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fa-solid fa-images"></i> Test Google Drive Images</h1>
+            <p>Kiểm tra hiển thị ảnh sản phẩm từ Google Drive</p>
+        </div>
+        
+        <div class="status" id="status">
+            <strong>Status:</strong> <span id="statusText">Đang tải...</span>
+        </div>
+        
+        <div class="debug-info" id="debugInfo">
+            <strong>Debug Info:</strong><br>
+            <div id="debugContent">Khởi tạo hệ thống...</div>
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Load Dependencies -->
+    <script src="js/utils/googleDriveImageHelper.js"></script>
+    <script src="js/api/apiClient.js"></script>
+    <script src="js/components/productCard.js"></script>
+
+    <script>
+        // Test products with Google Drive IDs
+        const testProducts = [
+            {
+                id: "test1",
+                name: "Áo thun tay ngắn nam",
+                description: "Áo thun cotton cao cấp, thoáng mát",
+                price: 299000,
+                actualPrice: 399000,
+                stock: 10,
+                googleDriveId: "1234567890abcdef", // Test Google Drive ID
+                imageUrl: "1234567890abcdef"
+            },
+            {
+                id: "test2", 
+                name: "Quần jeans nam",
+                description: "Quần jeans denim chất lượng cao",
+                price: 599000,
+                stock: 5,
+                googleDriveId: "https://drive.google.com/file/d/1xyz789/view?usp=sharing"
+            },
+            {
+                id: "test3",
+                name: "Giày sneaker",
+                description: "Giày thể thao năng động, phong cách",
+                price: 799000,
+                actualPrice: 999000,
+                stock: 0,
+                imageUrl: "https://drive.google.com/uc?id=1abc123&export=download"
+            }
+        ];
+
+        function updateStatus(message, isError = false) {
+            const statusElement = document.getElementById('statusText');
+            statusElement.textContent = message;
+            statusElement.style.color = isError ? '#e74c3c' : '#27ae60';
+        }
+
+        function addDebugInfo(info) {
+            const debugContent = document.getElementById('debugContent');
+            const timestamp = new Date().toLocaleTimeString();
+            debugContent.innerHTML += `<br>[${timestamp}] ${info}`;
+        }
+
+        async function testGoogleDriveImages() {
+            try {
+                updateStatus('Đang kiểm tra hệ thống...');
+                addDebugInfo('🔧 Bắt đầu kiểm tra hệ thống Google Drive Image Helper');
+
+                // Check if GoogleDriveImageHelper is loaded
+                if (!window.GoogleDriveImageHelper) {
+                    throw new Error('GoogleDriveImageHelper không được tải');
+                }
+                addDebugInfo('✅ GoogleDriveImageHelper đã được tải');
+
+                // Check if ProductCard is loaded
+                if (!window.ProductCard) {
+                    throw new Error('ProductCard không được tải');
+                }
+                addDebugInfo('✅ ProductCard đã được tải');
+
+                updateStatus('Đang tạo product cards...');
+                addDebugInfo('🎯 Bắt đầu tạo product cards');
+
+                const productsGrid = document.getElementById('productsGrid');
+                
+                testProducts.forEach((product, index) => {
+                    addDebugInfo(`📦 Tạo card cho sản phẩm: ${product.name}`);
+                    
+                    try {
+                        const productCard = new ProductCard(product);
+                        const cardElement = productCard.createElement();
+                        productsGrid.appendChild(cardElement);
+                        
+                        addDebugInfo(`✅ Card ${index + 1} tạo thành công`);
+                    } catch (error) {
+                        addDebugInfo(`❌ Lỗi tạo card ${index + 1}: ${error.message}`);
+                    }
+                });
+
+                updateStatus('✅ Hoàn thành! Kiểm tra console để xem chi tiết.');
+                addDebugInfo('🎉 Hoàn thành tạo tất cả product cards');
+
+            } catch (error) {
+                updateStatus(`❌ Lỗi: ${error.message}`, true);
+                addDebugInfo(`💥 Lỗi nghiêm trọng: ${error.message}`);
+                console.error('Test Error:', error);
+            }
+        }
+
+        // Test Google Drive Image Helper functions
+        function testImageHelper() {
+            addDebugInfo('🧪 Test GoogleDriveImageHelper functions:');
+            
+            const testCases = [
+                "1234567890abcdef",
+                "https://drive.google.com/file/d/1xyz789/view?usp=sharing",
+                "https://drive.google.com/uc?id=1abc123&export=download",
+                "./public/images/test.jpg"
+            ];
+
+            testCases.forEach((testCase, index) => {
+                try {
+                    const result = window.GoogleDriveImageHelper.processGoogleDriveImage(testCase);
+                    addDebugInfo(`  ${index + 1}. Input: ${testCase}`);
+                    addDebugInfo(`     Output: ${result}`);
+                } catch (error) {
+                    addDebugInfo(`  ${index + 1}. Error: ${error.message}`);
+                }
+            });
+        }
+
+        // Start the test when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testImageHelper();
+                testGoogleDriveImages();
+            }, 500);
+        });
+
+        // Log all console messages to debug area
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addDebugInfo(`📝 LOG: ${args.join(' ')}`);
+        };
+
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addDebugInfo(`⚠️ WARN: ${args.join(' ')}`);
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addDebugInfo(`❌ ERROR: ${args.join(' ')}`);
+        };
+    </script>
+</body>
+</html>

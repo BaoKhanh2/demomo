@@ -155,31 +155,89 @@
 	<script src="vendors/bootstrap/js/bootstrap-4.3.1/bootstrap.min.js"></script>
 	<script>
 async function loadUsers() {
-	const keyword = 'name';
-	const value = document.getElementById("search-input")?.value || "";
+	const searchValue = document.getElementById("search-input")?.value || "";
 
 	try {
-		const res = await fetch(`http://localhost:8070/users/search?keyword=${keyword}&value=${value}`);
-		if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-
-		const data = await res.json();
-		console.log("✅ API response:", data);
-
-		const users = Array.isArray(data.result) ? data.result : [];
+		// Thử nhiều API endpoints với CORS header
+		const apiUrls = [
+			`http://localhost:8070/users/search?keyword=name&value=${searchValue}`,
+			`http://localhost:8000/user/users/search?keyword=name&value=${searchValue}`,
+			`http://localhost:8080/users/search?keyword=name&value=${searchValue}`,
+			`http://localhost:8070/users`,
+			`http://localhost:8000/user/users`
+		];
+		
+		let users = [];
+		let loadedFrom = '';
+		
+		for (const apiUrl of apiUrls) {
+			try {
+				console.log(`🔗 Trying API: ${apiUrl}`);
+				const res = await fetch(apiUrl, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
+					}
+				});
+				
+				if (!res.ok) throw new Error(`HTTP ${res.status}`);
+				
+				const data = await res.json();
+				console.log("✅ API response:", data);
+				
+				// Parse response data linh hoạt
+				if (data.result && Array.isArray(data.result)) {
+					users = data.result;
+				} else if (data.data && Array.isArray(data.data)) {
+					users = data.data;
+				} else if (Array.isArray(data)) {
+					users = data;
+				}
+				
+				if (users.length > 0) {
+					loadedFrom = apiUrl;
+					break;
+				}
+			} catch (error) {
+				console.warn(`⚠️ Failed to load from ${apiUrl}: ${error.message}`);
+			}
+		}
+		
+		console.log(`✅ Loaded ${users.length} users from: ${loadedFrom}`);
+		
+		// Filter users nếu có search value
+		if (searchValue && users.length > 0) {
+			users = users.filter(user => 
+				user.fullName?.toLowerCase().includes(searchValue.toLowerCase()) ||
+				user.phoneNumber?.includes(searchValue)
+			);
+		}
+		
+		// Render table
 		const tbody = document.getElementById("user-table-body");
 		tbody.innerHTML = "";
+		
+		if (users.length === 0) {
+			tbody.innerHTML = `<tr><td colspan="8" class="text-center">Không tìm thấy người dùng nào</td></tr>`;
+			return;
+		}
 
 		users.forEach(user => {
+			const avatarImg = user.avatarUrl ? 
+				`<img src="${user.avatarUrl}" width="40" height="40" alt="Avatar" onerror="this.src='../client/public/images/cart_logo.png'" />` : 
+				'Không có ảnh';
+				
 			const row = `<tr>
-				<td>${user.fullName}</td>
-				<td>${user.phoneNumber}</td>
-				<td>${user.status}</td>
-				<td>${user.address}</td>
-				<td><img src="${user.avatarUrl}" width="40" height="40" alt="Avatar" /></td>
-				<td>${user.gender}</td>
-				<td>${user.dateOfBirth}</td>
+				<td>${user.fullName || 'N/A'}</td>
+				<td>${user.phoneNumber || 'N/A'}</td>
+				<td>${user.status || 'N/A'}</td>
+				<td>${user.address || 'N/A'}</td>
+				<td>${avatarImg}</td>
+				<td>${user.gender || 'N/A'}</td>
+				<td>${user.dateOfBirth || 'N/A'}</td>
 				<td>
-					<button class="btn btn-warning btn-sm" onclick='editUser(${JSON.stringify(user)})'><i class="mdi mdi-pencil"></i> Sửa</button>
+					<button class="btn btn-warning btn-sm" onclick='editUser(${JSON.stringify(user).replace(/'/g, "&#39;")})'><i class="mdi mdi-pencil"></i> Sửa</button>
 					<button class="btn btn-danger btn-sm" onclick="deleteUser('${user.id}')"><i class="mdi mdi-delete"></i> Xóa</button>
 				</td>
 			</tr>`;
@@ -216,26 +274,55 @@ async function saveUser() {
 		dateOfBirth: document.getElementById("edit-dateOfBirth").value
 	};
 
+	// Validate required fields
+	if (!updatedUser.fullName || !updatedUser.phoneNumber) {
+		alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+		return;
+	}
+
 	try {
-		const res = await fetch(`http://localhost:8070/users/update/me`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-User-Id': userId
-			},
-			body: JSON.stringify(updatedUser)
-		});
+		// Thử nhiều endpoints cho update user
+		const updateUrls = [
+			`http://localhost:8070/users/update/${userId}`,
+			`http://localhost:8000/user/users/update/${userId}`,
+			`http://localhost:8070/users/${userId}`
+		];
+		
+		let updateSuccess = false;
+		
+		for (const updateUrl of updateUrls) {
+			try {
+				console.log(`🔄 Trying update API: ${updateUrl}`);
+				const res = await fetch(updateUrl, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
+					},
+					body: JSON.stringify(updatedUser)
+				});
 
-		if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+				if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-		const data = await res.json();
-		console.log("✅ User updated:", data);
-		alert("Cập nhật thành công!");
-		$('#editUserModal').modal('hide');
-		loadUsers();
+				const data = await res.json();
+				console.log("✅ User updated:", data);
+				alert("Cập nhật thành công!");
+				$('#editUserModal').modal('hide');
+				loadUsers();
+				updateSuccess = true;
+				break;
+			} catch (error) {
+				console.warn(`⚠️ Failed to update via ${updateUrl}: ${error.message}`);
+			}
+		}
+		
+		if (!updateSuccess) {
+			throw new Error("Không thể cập nhật qua tất cả các API endpoints");
+		}
+		
 	} catch (err) {
 		console.error("❌ Lỗi cập nhật:", err);
-		alert("Không thể cập nhật người dùng.");
+		alert(`Không thể cập nhật người dùng: ${err.message}`);
 	}
 }
 
@@ -243,23 +330,47 @@ async function deleteUser(userId) {
 	if (!confirm("Bạn có chắc chắn muốn xoá hoặc cấm người dùng này?")) return;
 
 	try {
-		const res = await fetch(`http://localhost:8000/user/users/ban`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ userId }) // ✅ đúng định dạng body API
-		});
+		// Thử nhiều endpoints cho delete/ban user
+		const deleteUrls = [
+			{ url: `http://localhost:8000/user/users/ban`, method: 'POST', body: { userId } },
+			{ url: `http://localhost:8070/users/ban/${userId}`, method: 'POST', body: {} },
+			{ url: `http://localhost:8070/users/${userId}`, method: 'DELETE', body: {} }
+		];
+		
+		let deleteSuccess = false;
+		
+		for (const deleteConfig of deleteUrls) {
+			try {
+				console.log(`🗑️ Trying delete API: ${deleteConfig.url}`);
+				const res = await fetch(deleteConfig.url, {
+					method: deleteConfig.method,
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*'
+					},
+					body: Object.keys(deleteConfig.body).length ? JSON.stringify(deleteConfig.body) : undefined
+				});
 
-		if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+				if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-		const data = await res.json();
-		console.log("✅ User banned:", data);
-		alert("Đã xoá/cấm người dùng thành công!");
-		loadUsers();
+				const data = await res.json();
+				console.log("✅ User deleted/banned:", data);
+				alert("Đã xoá/cấm người dùng thành công!");
+				loadUsers();
+				deleteSuccess = true;
+				break;
+			} catch (error) {
+				console.warn(`⚠️ Failed to delete via ${deleteConfig.url}: ${error.message}`);
+			}
+		}
+		
+		if (!deleteSuccess) {
+			throw new Error("Không thể xóa qua tất cả các API endpoints");
+		}
+		
 	} catch (err) {
 		console.error("❌ Lỗi xoá:", err);
-		alert("Không thể xoá người dùng.");
+		alert(`Không thể xoá người dùng: ${err.message}`);
 	}
 }
 

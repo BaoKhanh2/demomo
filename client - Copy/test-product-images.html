@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Google Drive Product Images</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .test-section { margin: 30px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>🛍️ Test Google Drive Product Images</h1>
+    
+    <div class="test-section">
+        <h2>Test Product Cards với Google Drive IDs</h2>
+        <div id="productContainer" class="product-grid"></div>
+    </div>
+
+    <!-- Scripts - same order as products.html -->
+    <script src="./js/utils/helpers.js"></script>
+    <script src="./js/utils/googleDriveImageHelper.js"></script>
+    <script src="./js/api/apiClient.js"></script>
+    <script src="./js/components/productCard.js"></script>
+    <script src="./js/utils/productUIHelpers.js"></script>
+    
+    <script>
+        // Test products với Google Drive IDs từ hình ảnh của bạn
+        const testProducts = [
+            {
+                id: "dce87d4f-e49a-4558-9267-dd5ce53b9f71",
+                name: "Áo thun tay ngắn",
+                description: "Áo thun cotton 100%, thoáng mát",
+                price: 250000,
+                stock: 10,
+                // Sử dụng ID từ hình ảnh của bạn
+                imageUrl: "dce87d4f-e49a-4558-9267-dd5ce53b9f71"
+            },
+            {
+                id: "5e7da2e7-d897-4d7d-976b-bf121e767ef2",
+                name: "Áo thun tay ngắn", 
+                description: "Áo thun cotton 100%, thoáng mát",
+                price: 270000,
+                stock: 8,
+                imageUrl: "5e7da2e7-d897-4d7d-976b-bf121e767ef2"
+            },
+            {
+                id: "1c363dde-8f22-4968-8e87-834f810c759e",
+                name: "Áo thun tay ngắn",
+                description: "Áo thun cotton 100%, thoáng mát", 
+                price: 280000,
+                stock: 12,
+                imageUrl: "1c363dde-8f22-4968-8e87-834f810c759e"
+            },
+            {
+                id: "0c96b969-658c-41ff-8eee-ff212c50fd2",
+                name: "Áo thun tay ngắn",
+                description: "Áo thun cotton 100%, thoáng mát",
+                price: 260000, 
+                stock: 15,
+                imageUrl: "0c96b969-658c-41ff-8eee-ff212c50fd2"
+            },
+            {
+                id: "28f2f39e-1c60-43b6-9429-aad3b963f372",
+                name: "Áo thun tay ngắn S",
+                description: "Áo thun cotton 100%, thoáng mát",
+                price: 240000,
+                stock: 20,
+                imageUrl: "28f2f39e-1c60-43b6-9429-aad3b963f372"
+            }
+        ];
+
+        // Wait for DOM and then create product cards
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Testing Google Drive Product Images...');
+            
+            const container = document.getElementById('productContainer');
+            
+            testProducts.forEach(product => {
+                console.log('🖼️ Creating card for:', product.name, 'with image ID:', product.imageUrl);
+                
+                // Check if GoogleDriveImageHelper is available
+                if (window.GoogleDriveImageHelper) {
+                    console.log('✅ GoogleDriveImageHelper is available');
+                    
+                    // Test image processing
+                    const processedUrl = window.GoogleDriveImageHelper.processGoogleDriveImage(product.imageUrl);
+                    console.log('🔍 Processed URL:', processedUrl);
+                } else {
+                    console.error('❌ GoogleDriveImageHelper not found!');
+                }
+                
+                // Create product card
+                if (window.ProductCard) {
+                    const productCard = new window.ProductCard(product);
+                    const cardElement = productCard.createElement();
+                    container.appendChild(cardElement);
+                } else {
+                    console.error('❌ ProductCard class not found!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

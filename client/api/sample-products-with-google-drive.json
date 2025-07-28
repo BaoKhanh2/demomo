@@ -1,0 +1,166 @@
+{
+  "sampleProductsWithGoogleDriveImages": [
+    {
+      "id": "1",
+      "name": "Áo thun nam cổ tròn",
+      "description": "Áo thun nam chất liệu cotton 100%, thoáng mát, phù hợp mùa hè",
+      "categoryId": "c1",
+      "brand": "Fashion Brand",
+      "price": 250000,
+      "status": "active",
+      
+      "_comment_imageUrl": "Có thể dùng Google Drive ID trực tiếp",
+      "imageUrl": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+      
+      "_comment_images": "Mảng ảnh cho gallery, mix được các loại URL",
+      "images": [
+        "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+        "https://drive.google.com/file/d/1ABC123xyz456def789/view?usp=sharing",
+        "1DEF456ghi789jkl012",
+        "./public/images/backup-image.png"
+      ],
+      
+      "_comment_variants": "Variant có thể có ảnh riêng",
+      "variant": [
+        {
+          "id": "v1",
+          "skuCode": "SHIRT-M-RED",
+          "name": "Size M - Màu đỏ", 
+          "size": "M",
+          "color": "red",
+          "price": 250000,
+          "quantity": 10,
+          "image": "1RED123colorimage456",
+          "attributes": [
+            {"attribute": "size", "value": "M"},
+            {"attribute": "color", "value": "red"}
+          ]
+        },
+        {
+          "id": "v2", 
+          "skuCode": "SHIRT-L-BLUE",
+          "name": "Size L - Màu xanh",
+          "size": "L", 
+          "color": "blue",
+          "price": 270000,
+          "quantity": 5,
+          "image": "1BLUE789colorimage123",
+          "attributes": [
+            {"attribute": "size", "value": "L"},
+            {"attribute": "color", "value": "blue"}
+          ]
+        }
+      ]
+    },
+    
+    {
+      "id": "2",
+      "name": "Quần jean nam",
+      "description": "Quần jean nam ống đứng, co giãn nhẹ",
+      "categoryId": "c2",
+      "brand": "Denim Co",
+      "price": 450000,
+      "status": "active",
+      
+      "_comment": "Sử dụng sharing URL trực tiếp",
+      "imageUrl": "https://drive.google.com/file/d/1XYZ789abc123def456/view?usp=sharing",
+      
+      "images": [
+        "https://drive.google.com/file/d/1XYZ789abc123def456/view?usp=sharing",
+        "1ABC123fronview789",
+        "1DEF456backview123", 
+        "1GHI789sideview456"
+      ],
+      
+      "variant": [
+        {
+          "id": "v3",
+          "skuCode": "JEAN-30-DARK",
+          "name": "Size 30 - Màu đen",
+          "size": "30",
+          "color": "dark",
+          "price": 450000,
+          "quantity": 8,
+          "image": "1DARK123jean456",
+          "attributes": [
+            {"attribute": "size", "value": "30"},
+            {"attribute": "color", "value": "dark"}
+          ]
+        }
+      ]
+    },
+    
+    {
+      "id": "3",
+      "name": "Giày thể thao",
+      "description": "Giày thể thao nam nữ, đế êm, phù hợp chạy bộ",
+      "categoryId": "c3", 
+      "brand": "Sport Brand",
+      "price": 890000,
+      "status": "active",
+      
+      "_comment": "Mix Google Drive và local images",
+      "imageUrl": "1SHOE123main456view",
+      
+      "images": [
+        "1SHOE123main456view",
+        "1SHOE789side123view", 
+        "1SHOE456top789view",
+        "./public/images/shoe-detail.png"
+      ],
+      
+      "variant": [
+        {
+          "id": "v4",
+          "skuCode": "SHOE-42-WHITE",
+          "name": "Size 42 - Màu trắng",
+          "size": "42",
+          "color": "white", 
+          "price": 890000,
+          "quantity": 12,
+          "image": "1WHITE123shoe456",
+          "attributes": [
+            {"attribute": "size", "value": "42"},
+            {"attribute": "color", "value": "white"}
+          ]
+        },
+        {
+          "id": "v5",
+          "skuCode": "SHOE-43-BLACK", 
+          "name": "Size 43 - Màu đen",
+          "size": "43",
+          "color": "black",
+          "price": 890000,
+          "quantity": 7,
+          "image": "1BLACK789shoe123",
+          "attributes": [
+            {"attribute": "size", "value": "43"},
+            {"attribute": "color", "value": "black"}
+          ]
+        }
+      ]
+    }
+  ],
+  
+  "_documentation": {
+    "imageUrl_formats": [
+      "Google Drive ID only: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'",
+      "Google Drive sharing URL: 'https://drive.google.com/file/d/ID/view?usp=sharing'",
+      "Google Drive UC URL: 'https://drive.google.com/uc?id=ID&export=view'",
+      "Local path: './public/images/image.png'",
+      "External URL: 'https://example.com/image.jpg'"
+    ],
+    
+    "automatic_processing": "Tất cả formats sẽ được tự động chuyển đổi thành viewable URLs",
+    
+    "fallback_handling": "Nếu ảnh không load được, hệ thống sẽ dùng './public/images/cart_logo.png'",
+    
+    "best_practices": [
+      "Sử dụng Google Drive ID (ngắn gọn nhất)",
+      "Đảm bảo ảnh được set public view", 
+      "Có ảnh backup cho trường hợp Google Drive lỗi",
+      "Tối ưu kích thước ảnh trước khi upload",
+      "Đặt tên file có ý nghĩa"
+    ]
+  }
+}

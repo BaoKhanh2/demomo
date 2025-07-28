@@ -40,23 +40,23 @@ services:
     networks:
       - backend
 
-  user-service:
-    image: embeddium/user:v1.0.4
-    container_name: user-service
-    ports:
-      - "8070:8070"
-    depends_on:
-      discovery-server:
-        condition: service_healthy
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8070/actuator/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - backend
+  # user-service:
+  #   image: embeddium/user:v1.0.4
+  #   container_name: user-service
+  #   ports:
+  #     - "8070:8070"
+  #   depends_on:
+  #     discovery-server:
+  #       condition: service_healthy
+  #   environment:
+  #     - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-server:8761/eureka/
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:8070/actuator/health"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - backend
 
   file-service:
     image: embeddium/file:v1.0.4
@@ -98,7 +98,7 @@ services:
       - backend
   
   product-service:
-    image: embeddium/product:v1.0.3
+    image: embeddium/product:v1.0.4
     container_name: product-service
     ports:
       - "8060:8060"
@@ -124,8 +124,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      user-service:
-        condition: service_healthy
+      # user-service:
+      #   condition: service_healthy
       inventory-service:
         condition: service_healthy
       product-service:

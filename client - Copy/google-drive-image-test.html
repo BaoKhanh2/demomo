@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Image Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .image-item {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .image-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .image-info {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+        }
+        .test-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Google Drive Image Helper - Test Demo</h1>
+    
+    <!-- Test Input Section -->
+    <div class="test-section">
+        <h2>Test Google Drive Image Processing</h2>
+        <p>Nhập Google Drive ID, sharing URL, hoặc bất kỳ URL ảnh nào để test:</p>
+        
+        <input type="text" id="testInput" class="test-input" 
+               placeholder="Nhập Google Drive ID hoặc URL ở đây..." 
+               value="1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms">
+        
+        <button class="test-button" onclick="testImageProcessing()">🔍 Test Image Processing</button>
+        
+        <div id="testResult" class="result" style="display: none;"></div>
+        
+        <div id="testImageContainer" style="margin-top: 20px;"></div>
+    </div>
+
+    <!-- Sample Images Section -->
+    <div class="test-section">
+        <h2>Ví dụ các loại Google Drive Images</h2>
+        <div class="image-grid" id="sampleImages"></div>
+    </div>
+
+    <!-- Product Simulation Section -->
+    <div class="test-section">
+        <h2>Simulation: Product với Google Drive Images</h2>
+        <div id="productSimulation"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/utils/googleDriveImageHelper.js"></script>
+    
+    <script>
+        // Sample Google Drive images để test
+        const sampleImages = [
+            {
+                name: "Google Drive ID",
+                source: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                description: "Pure Google Drive file ID"
+            },
+            {
+                name: "Sharing URL",
+                source: "https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view?usp=sharing",
+                description: "Google Drive sharing link"
+            },
+            {
+                name: "UC URL (no export)",
+                source: "https://drive.google.com/uc?id=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                description: "UC URL without export=view"
+            },
+            {
+                name: "Local Image",
+                source: "./public/images/cart_logo.png",
+                description: "Local image path"
+            }
+        ];
+
+        // Render sample images
+        function renderSampleImages() {
+            const container = document.getElementById('sampleImages');
+            
+            sampleImages.forEach(sample => {
+                const processedUrl = window.GoogleDriveImageHelper.processGoogleDriveImage(sample.source);
+                
+                const item = document.createElement('div');
+                item.className = 'image-item';
+                item.innerHTML = `
+                    <h4>${sample.name}</h4>
+                    <img src="${processedUrl}" alt="${sample.name}" 
+                         onerror="this.src='./public/images/cart_logo.png'; this.title='Failed to load';">
+                    <div class="image-info">
+                        <strong>Original:</strong><br>${sample.source}<br><br>
+                        <strong>Processed:</strong><br>${processedUrl}<br><br>
+                        <strong>Description:</strong><br>${sample.description}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // Test function
+        function testImageProcessing() {
+            const input = document.getElementById('testInput').value.trim();
+            const resultDiv = document.getElementById('testResult');
+            const imageContainer = document.getElementById('testImageContainer');
+            
+            if (!input) {
+                alert('Vui lòng nhập Google Drive ID hoặc URL!');
+                return;
+            }
+            
+            // Process the input
+            const processedUrl = window.GoogleDriveImageHelper.processGoogleDriveImage(input);
+            const driveId = window.GoogleDriveImageHelper.extractGoogleDriveId(input);
+            const isGoogleDriveId = window.GoogleDriveImageHelper.isGoogleDriveId(input);
+            const isLocalPath = window.GoogleDriveImageHelper.isLocalPath(input);
+            
+            // Show results
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <strong>📝 Analysis Results:</strong><br>
+                🔤 Original Input: ${input}<br>
+                🔗 Processed URL: ${processedUrl}<br>
+                🆔 Extracted Drive ID: ${driveId || 'N/A'}<br>
+                ✅ Is Google Drive ID: ${isGoogleDriveId}<br>
+                📁 Is Local Path: ${isLocalPath}<br>
+            `;
+            
+            // Display the image
+            imageContainer.innerHTML = `
+                <h4>🖼️ Processed Image:</h4>
+                <img src="${processedUrl}" alt="Test Image" style="max-width: 300px; border: 1px solid #ddd; border-radius: 4px;"
+                     onerror="this.src='./public/images/cart_logo.png'; this.style.border='2px solid red';">
+            `;
+        }
+
+        // Simulate product with Google Drive images
+        function simulateProduct() {
+            const sampleProduct = {
+                id: "demo-1",
+                name: "Áo thun Google Drive Demo",
+                imageUrl: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                images: [
+                    "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                    "https://drive.google.com/file/d/1ABC123xyz/view?usp=sharing",
+                    "./public/images/cart_logo.png"
+                ],
+                variant: [
+                    {
+                        id: "v1",
+                        name: "Size M",
+                        image: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+                    }
+                ]
+            };
+            
+            // Process images
+            const processedImages = window.GoogleDriveImageHelper.batchProcessImages(sampleProduct.images);
+            const mainImage = window.GoogleDriveImageHelper.processGoogleDriveImage(sampleProduct.imageUrl);
+            
+            const container = document.getElementById('productSimulation');
+            container.innerHTML = `
+                <h4>🛍️ Sample Product: ${sampleProduct.name}</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h5>Main Image:</h5>
+                        <img src="${mainImage}" alt="Main" style="width: 100%; max-width: 200px;">
+                        <p style="font-size: 12px; color: #666;">Original: ${sampleProduct.imageUrl}</p>
+                        <p style="font-size: 12px; color: #666;">Processed: ${mainImage}</p>
+                    </div>
+                    <div>
+                        <h5>Image Gallery:</h5>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            ${processedImages.map((url, index) => `
+                                <div style="text-align: center;">
+                                    <img src="${url}" alt="Gallery ${index + 1}" style="width: 80px; height: 80px; object-fit: cover;">
+                                    <p style="font-size: 10px; margin: 5px 0;">#${index + 1}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Google Drive Image Helper Test Demo loaded');
+            renderSampleImages();
+            simulateProduct();
+        });
+    </script>
+</body>
+</html>

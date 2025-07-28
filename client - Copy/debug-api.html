@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Debug</title>
+    <link rel="stylesheet" href="assets/css/category-menu-custom.css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        .error { background: #ffe6e6; border-left: 4px solid #ff0000; }
+        .success { background: #e6ffe6; border-left: 4px solid #00aa00; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <!-- Category menu -->
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <div class="category-bar">
+        <ul id="categoryMenu" class="category-menu"></ul>
+      </div>
+    </div>
+
+    <h1>🔍 Test API Debug - Kiểm tra tổng quan</h1>
+    
+    <div class="test-section">
+        <h2>1. Test Categories API (localhost:8000)</h2>
+        <button onclick="testCategoriesAPI()">Test Categories</button>
+        <div id="categoriesResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Test Products API (localhost:8060)</h2>
+        <button onclick="testProductsAPI()">Test All Products</button>
+        <button onclick="testProductsAPIWithCategory()">Test Products với Category c1</button>
+        <div id="productsResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. Test Product Detail API</h2>
+        <input type="text" id="productIdInput" placeholder="Nhập Product ID" />
+        <button onclick="testProductDetailAPI()">Test Product Detail</button>
+        <div id="productDetailResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test JavaScript Modules</h2>
+        <button onclick="testJSModules()">Test JS Modules Load</button>
+        <div id="jsModulesResult" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Test URL Parameters</h2>
+        <p>Current URL: <span id="currentUrl"></span></p>
+        <button onclick="testURLParams()">Test URL Parsing</button>
+        <button onclick="simulateProductsPage()">Simulate Products Page URL</button>
+        <div id="urlResult" class="result"></div>
+    </div>
+
+    <!-- Load our modules -->
+    <script src="./js/utils/helpers.js"></script>
+    <script src="./js/api/apiClient.js"></script>
+    <script src="./js/components/productCard.js"></script>
+    <script src="./js/connect-products.js"></script>
+
+    <script>
+        // Update current URL
+        document.getElementById('currentUrl').textContent = window.location.href;
+
+        // Test Categories API
+        async function testCategoriesAPI() {
+            const result = document.getElementById('categoriesResult');
+            result.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/product/categories/tree');
+                const data = await response.json();
+                
+                result.className = 'result success';
+                result.innerHTML = `
+                    <strong>✅ Categories API Success!</strong><br>
+                    Status: ${response.status}<br>
+                    Data keys: ${Object.keys(data).join(', ')}<br>
+                    Categories count: ${Array.isArray(data.data) ? data.data.length : 'N/A'}<br>
+                    <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                `;
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `<strong>❌ Categories API Error:</strong><br>${error.message}`;
+            }
+        }
+
+        // Test Products API
+        async function testProductsAPI() {
+            const result = document.getElementById('productsResult');
+            result.textContent = 'Testing all products...';
+            
+            try {
+                const response = await fetch('http://localhost:8060/products');
+                const data = await response.json();
+                
+                result.className = 'result success';
+                result.innerHTML = `
+                    <strong>✅ Products API Success!</strong><br>
+                    Status: ${response.status}<br>
+                    Data keys: ${Object.keys(data).join(', ')}<br>
+                    Products count: ${Array.isArray(data.data) ? data.data.length : Array.isArray(data.result) ? data.result.length : 'N/A'}<br>
+                    <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                `;
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `<strong>❌ Products API Error:</strong><br>${error.message}`;
+            }
+        }
+
+        // Test Products API with Category
+        async function testProductsAPIWithCategory() {
+            const result = document.getElementById('productsResult');
+            result.textContent = 'Testing products with category c1...';
+            
+            try {
+                const response = await fetch('http://localhost:8060/products?categoryId=c1');
+                const data = await response.json();
+                
+                result.className = 'result success';
+                result.innerHTML = `
+                    <strong>✅ Products API với Category Success!</strong><br>
+                    Status: ${response.status}<br>
+                    Data keys: ${Object.keys(data).join(', ')}<br>
+                    Products count: ${Array.isArray(data.data) ? data.data.length : Array.isArray(data.result) ? data.result.length : 'N/A'}<br>
+                    <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                `;
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `<strong>❌ Products API với Category Error:</strong><br>${error.message}`;
+            }
+        }
+
+        // Test Product Detail API
+        async function testProductDetailAPI() {
+            const productId = document.getElementById('productIdInput').value.trim();
+            const result = document.getElementById('productDetailResult');
+            
+            if (!productId) {
+                result.className = 'result error';
+                result.innerHTML = '<strong>❌ Vui lòng nhập Product ID</strong>';
+                return;
+            }
+            
+            result.textContent = `Testing product detail for ID: ${productId}...`;
+            
+            try {
+                const response = await fetch(`http://localhost:8060/products/${productId}`);
+                const data = await response.json();
+                
+                result.className = 'result success';
+                result.innerHTML = `
+                    <strong>✅ Product Detail API Success!</strong><br>
+                    Status: ${response.status}<br>
+                    Product ID: ${productId}<br>
+                    Data keys: ${Object.keys(data).join(', ')}<br>
+                    <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                `;
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `<strong>❌ Product Detail API Error:</strong><br>${error.message}`;
+            }
+        }
+
+        // Test JS Modules
+        function testJSModules() {
+            const result = document.getElementById('jsModulesResult');
+            const tests = [];
+            
+            // Test UtilHelpers
+            if (typeof window.UtilHelpers === 'object') {
+                tests.push('✅ UtilHelpers loaded');
+            } else {
+                tests.push('❌ UtilHelpers NOT loaded');
+            }
+            
+            // Test apiClient
+            if (typeof window.apiClient === 'object') {
+                tests.push('✅ apiClient loaded');
+            } else {
+                tests.push('❌ apiClient NOT loaded');
+            }
+            
+            // Test ProductCard
+            if (typeof window.ProductCard === 'function') {
+                tests.push('✅ ProductCard loaded');
+            } else {
+                tests.push('❌ ProductCard NOT loaded');
+            }
+            
+            // Test ProductManager
+            if (typeof window.ProductManager === 'function') {
+                tests.push('✅ ProductManager loaded');
+            } else {
+                tests.push('❌ ProductManager NOT loaded');
+            }
+            
+            const hasErrors = tests.some(test => test.includes('❌'));
+            result.className = hasErrors ? 'result error' : 'result success';
+            result.innerHTML = `
+                <strong>JavaScript Modules Test:</strong><br>
+                ${tests.join('<br>')}
+            `;
+        }
+
+        // Test URL Parameters
+        function testURLParams() {
+            const result = document.getElementById('urlResult');
+            
+            try {
+                if (typeof window.UtilHelpers === 'object' && window.UtilHelpers.getUrlParams) {
+                    const params = window.UtilHelpers.getUrlParams();
+                    
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <strong>✅ URL Parameters:</strong><br>
+                        useNewAPI: ${params.useNewAPI}<br>
+                        categoryId: ${params.categoryId}<br>
+                        categoryName: ${params.categoryName}<br>
+                        productId: ${params.productId}
+                    `;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = '<strong>❌ UtilHelpers.getUrlParams not available</strong>';
+                }
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `<strong>❌ URL Parameters Error:</strong><br>${error.message}`;
+            }
+        }
+
+        // Simulate Products Page
+        function simulateProductsPage() {
+            window.location.href = 'products.html?useNewAPI=true&categoryId=c1&categoryName=Điện%20thoại';
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            console.log('🚀 Debug page loaded');
+            testJSModules();
+            testURLParams();
+        });
+    </script>
+
+    <!-- Category Menu Scripts -->
+    <script src="./js/utils/helpers.js"></script>
+    <script src="./js/api/apiClient.js"></script>
+    <script src="./js/categories.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Product Management | Simple Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="vendors/bootstrap/css/bootstrap-4.3.1/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/simple-custom.css">
+	<link rel="stylesheet" type="text/css" href="vendors/icon/mdi/css/materialdesignicons.min.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="col-md-2 sidebar">
+					<div class="brand">
+						<a href="#" class="brand-name">Simple Admin</a>
+					</div>
+					<div class="sidebar-sticky">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a href="dashboard.html" class="nav-link"><i class="mdi mdi-monitor"></i> Dashboard</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="mdi mdi-shape-outline"></i> UI Components <span class="badge badge-info">New</span><i class="mdi mdi-chevron-down float-right pr-2"></i></a>
+								<div class="collapse" id="collapseExample">
+									<a class="nav-link" href="button.html"><i class="mdi mdi-circle-medium"></i> Buttons</a>
+									<a class="nav-link" href="chart.html"><i class="mdi mdi-circle-medium"></i> Chart</a>
+									<a class="nav-link" href="input.html"><i class="mdi mdi-circle-medium"></i> Input</a>
+									<a class="nav-link" href="modal.html"><i class="mdi mdi-circle-medium"></i> Modal</a>
+									<a class="nav-link" href="widget.html"><i class="mdi mdi-circle-medium"></i> Widget</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a href="form.html" class="nav-link"><i class="mdi mdi-lead-pencil"></i> Form</a>
+							</li>
+							<li class="nav-item">
+								<a href="table.html" class="nav-link"><i class="mdi mdi-table"></i> User Management</a>
+							</li>
+							<li class="nav-item">
+								<a href="product-management.html" class="nav-link active"><i class="mdi mdi-package-variant"></i> Product Management</a>
+							</li>
+						</ul>
+					</div>
+					<div class="nav-bottom">
+						<ul class="nav">
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-account"></i></a></li>
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-message"></i></a></li>
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-bell"></i></a></li>
+							<li class="nav-item"><a href="#" class="nav-link"><i class="mdi mdi-power"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<main class="col-md-9 col-lg-10" role="main">
+				<div class="container">
+					<div class="content-header mt-2 mb-3">
+						<h2 class="text-header">Product Management</h2>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">
+							<i class="mdi mdi-plus"></i> Thêm sản phẩm mới
+						</button>
+					</div>
+					<div class="row basic">
+						<div class="col-md-12 mb-3">
+							<div class="card">
+								<div class="card-body pb-0">
+									<label class="title-body">Danh sách sản phẩm</label>
+									<div class="table-responsive">
+										<input type="text" id="search-input" placeholder="Nhập tên sản phẩm để tìm..." />
+										<button onclick="loadProducts()">Tìm kiếm</button>
+
+										<table class="table">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Tên sản phẩm</th>
+													<th>Thương hiệu</th>
+													<th>Giá</th>
+													<th>Danh mục</th>
+													<th>Hình ảnh</th>
+													<th>Mô tả</th>
+													<th>Thao tác</th>
+												</tr>
+											</thead>
+											<tbody id="product-table-body"></tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Add Product Modal -->
+				<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="addProductModalLabel">Thêm sản phẩm mới</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form id="addProductForm">
+									<div class="form-group">
+										<label for="add-name">Tên sản phẩm</label>
+										<input type="text" class="form-control" id="add-name" required>
+									</div>
+									<div class="form-group">
+										<label for="add-brand">Thương hiệu</label>
+										<input type="text" class="form-control" id="add-brand" required>
+									</div>
+									<div class="form-group">
+										<label for="add-price">Giá</label>
+										<input type="number" class="form-control" id="add-price" step="0.01" required>
+									</div>
+									<div class="form-group">
+										<label for="add-categoryId">Danh mục ID</label>
+										<input type="text" class="form-control" id="add-categoryId" required>
+									</div>
+									<div class="form-group">
+										<label for="add-imageUrl">URL hình ảnh</label>
+										<input type="text" class="form-control" id="add-imageUrl">
+									</div>
+									<div class="form-group">
+										<label for="add-description">Mô tả</label>
+										<textarea class="form-control" id="add-description" rows="3"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+								<button type="button" class="btn btn-primary" onclick="addProduct()">Thêm sản phẩm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Edit Product Modal -->
+				<div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="editProductModalLabel">Chỉnh sửa sản phẩm</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form id="editProductForm">
+									<input type="hidden" id="edit-product-id">
+									<div class="form-group">
+										<label for="edit-name">Tên sản phẩm</label>
+										<input type="text" class="form-control" id="edit-name" required>
+									</div>
+									<div class="form-group">
+										<label for="edit-brand">Thương hiệu</label>
+										<input type="text" class="form-control" id="edit-brand" required>
+									</div>
+									<div class="form-group">
+										<label for="edit-price">Giá</label>
+										<input type="number" class="form-control" id="edit-price" step="0.01" required>
+									</div>
+									<div class="form-group">
+										<label for="edit-categoryId">Danh mục ID</label>
+										<input type="text" class="form-control" id="edit-categoryId" required>
+									</div>
+									<div class="form-group">
+										<label for="edit-imageUrl">URL hình ảnh</label>
+										<input type="text" class="form-control" id="edit-imageUrl">
+									</div>
+									<div class="form-group">
+										<label for="edit-description">Mô tả</label>
+										<textarea class="form-control" id="edit-description" rows="3"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+								<button type="button" class="btn btn-primary" onclick="saveProduct()">Lưu thay đổi</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- Jquery -->
+	<script src="vendors/bootstrap/js/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+	<!-- Popper -->
+	<script src="vendors/bootstrap/js/popper/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="vendors/bootstrap/js/bootstrap-4.3.1/bootstrap.min.js"></script>
+	<script>
+// ========================================
+// PRODUCT MANAGEMENT FUNCTIONS
+// ========================================
+
+// loadProducts: Tải danh sách sản phẩm từ API
+async function loadProducts() {
+	const searchValue = document.getElementById("search-input")?.value || "";
+	
+	try {
+		// Thử nhiều API endpoints
+		const apiUrls = [
+			`http://localhost:8060/products`,
+			`http://localhost:8000/product/products`,
+			`http://localhost:8080/products`
+		];
+		
+		let products = [];
+		let loadedFrom = '';
+		
+		for (const apiUrl of apiUrls) {
+			try {
+				console.log(`🔗 Trying API: ${apiUrl}`);
+				const res = await fetch(apiUrl);
+				if (!res.ok) throw new Error(`HTTP ${res.status}`);
+				
+				const data = await res.json();
+				console.log("✅ API response:", data);
+				
+				// Parse response data linh hoạt
+				if (data.data && Array.isArray(data.data)) {
+					products = data.data;
+				} else if (data.result && Array.isArray(data.result)) {
+					products = data.result;
+				} else if (Array.isArray(data)) {
+					products = data;
+				}
+				
+				if (products.length > 0) {
+					loadedFrom = apiUrl;
+					break;
+				}
+			} catch (error) {
+				console.warn(`⚠️ Failed to load from ${apiUrl}: ${error.message}`);
+			}
+		}
+		
+		console.log(`✅ Loaded ${products.length} products from: ${loadedFrom}`);
+		
+		// Filter products nếu có search value
+		if (searchValue) {
+			products = products.filter(product => 
+				product.name?.toLowerCase().includes(searchValue.toLowerCase()) ||
+				product.brand?.toLowerCase().includes(searchValue.toLowerCase())
+			);
+		}
+		
+		// Render table
+		const tbody = document.getElementById("product-table-body");
+		tbody.innerHTML = "";
+		
+		if (products.length === 0) {
+			tbody.innerHTML = `<tr><td colspan="8" class="text-center">Không tìm thấy sản phẩm nào</td></tr>`;
+			return;
+		}
+		
+		products.forEach(product => {
+			const imagePreview = product.imageUrl ? 
+				`<img src="${product.imageUrl}" width="50" height="50" alt="Product" onerror="this.src='../client/public/images/cart_logo.png'" />` : 
+				'Không có ảnh';
+				
+			const row = `<tr>
+				<td>${product.id || 'N/A'}</td>
+				<td>${product.name || 'Không có tên'}</td>
+				<td>${product.brand || 'Không có thương hiệu'}</td>
+				<td>${product.price ? formatPrice(product.price) : 'Không có giá'}</td>
+				<td>${product.categoryId || 'Không có danh mục'}</td>
+				<td>${imagePreview}</td>
+				<td>${product.description ? (product.description.substring(0, 50) + '...') : 'Không có mô tả'}</td>
+				<td>
+					<button class="btn btn-warning btn-sm" onclick='editProduct(${JSON.stringify(product).replace(/'/g, "&#39;")})'><i class="mdi mdi-pencil"></i> Sửa</button>
+					<button class="btn btn-danger btn-sm" onclick="deleteProduct('${product.id}')"><i class="mdi mdi-delete"></i> Xóa</button>
+				</td>
+			</tr>`;
+			tbody.innerHTML += row;
+		});
+		
+	} catch (err) {
+		console.error("❌ Lỗi khi tải sản phẩm:", err);
+		alert("Không thể tải danh sách sản phẩm. Kiểm tra lại backend hoặc mạng.");
+	}
+}
+
+// formatPrice: Format giá tiền
+function formatPrice(price) {
+	return new Intl.NumberFormat('vi-VN', {
+		style: 'currency',
+		currency: 'VND'
+	}).format(price);
+}
+
+// addProduct: Thêm sản phẩm mới
+async function addProduct() {
+	const newProduct = {
+		name: document.getElementById("add-name").value,
+		brand: document.getElementById("add-brand").value,
+		price: parseFloat(document.getElementById("add-price").value),
+		categoryId: document.getElementById("add-categoryId").value,
+		imageUrl: document.getElementById("add-imageUrl").value,
+		description: document.getElementById("add-description").value
+	};
+	
+	// Validate required fields
+	if (!newProduct.name || !newProduct.brand || !newProduct.price || !newProduct.categoryId) {
+		alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+		return;
+	}
+	
+	try {
+		console.log("🔄 Creating product:", newProduct);
+		
+		const res = await fetch(`http://localhost:8060/products/create`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newProduct)
+		});
+		
+		if (!res.ok) {
+			const errorData = await res.text();
+			throw new Error(`HTTP ${res.status}: ${errorData}`);
+		}
+		
+		const data = await res.json();
+		console.log("✅ Product created:", data);
+		alert("Thêm sản phẩm thành công!");
+		$('#addProductModal').modal('hide');
+		
+		// Clear form
+		document.getElementById("addProductForm").reset();
+		
+		// Reload products
+		loadProducts();
+		
+	} catch (err) {
+		console.error("❌ Lỗi thêm sản phẩm:", err);
+		alert(`Không thể thêm sản phẩm: ${err.message}`);
+	}
+}
+
+// editProduct: Hiển thị modal chỉnh sửa sản phẩm
+function editProduct(product) {
+	console.log("📝 Editing product:", product);
+	
+	document.getElementById("edit-product-id").value = product.id;
+	document.getElementById("edit-name").value = product.name || '';
+	document.getElementById("edit-brand").value = product.brand || '';
+	document.getElementById("edit-price").value = product.price || 0;
+	document.getElementById("edit-categoryId").value = product.categoryId || '';
+	document.getElementById("edit-imageUrl").value = product.imageUrl || '';
+	document.getElementById("edit-description").value = product.description || '';
+	
+	$('#editProductModal').modal('show');
+}
+
+// saveProduct: Lưu thay đổi sản phẩm
+async function saveProduct() {
+	const productId = document.getElementById("edit-product-id").value;
+	const updatedProduct = {
+		name: document.getElementById("edit-name").value,
+		brand: document.getElementById("edit-brand").value,
+		price: parseFloat(document.getElementById("edit-price").value),
+		categoryId: document.getElementById("edit-categoryId").value,
+		imageUrl: document.getElementById("edit-imageUrl").value,
+		description: document.getElementById("edit-description").value
+	};
+	
+	// Validate required fields
+	if (!updatedProduct.name || !updatedProduct.brand || !updatedProduct.price || !updatedProduct.categoryId) {
+		alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+		return;
+	}
+	
+	try {
+		console.log("🔄 Updating product:", productId, updatedProduct);
+		
+		const res = await fetch(`http://localhost:8060/products/${productId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(updatedProduct)
+		});
+		
+		if (!res.ok) {
+			const errorData = await res.text();
+			throw new Error(`HTTP ${res.status}: ${errorData}`);
+		}
+		
+		const data = await res.json();
+		console.log("✅ Product updated:", data);
+		alert("Cập nhật sản phẩm thành công!");
+		$('#editProductModal').modal('hide');
+		
+		// Reload products
+		loadProducts();
+		
+	} catch (err) {
+		console.error("❌ Lỗi cập nhật sản phẩm:", err);
+		alert(`Không thể cập nhật sản phẩm: ${err.message}`);
+	}
+}
+
+// deleteProduct: Xóa sản phẩm
+async function deleteProduct(productId) {
+	if (!confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) return;
+	
+	try {
+		console.log("🗑️ Deleting product:", productId);
+		
+		const res = await fetch(`http://localhost:8060/products/${productId}`, {
+			method: 'DELETE'
+		});
+		
+		if (!res.ok) {
+			const errorData = await res.text();
+			throw new Error(`HTTP ${res.status}: ${errorData}`);
+		}
+		
+		console.log("✅ Product deleted");
+		alert("Xóa sản phẩm thành công!");
+		
+		// Reload products
+		loadProducts();
+		
+	} catch (err) {
+		console.error("❌ Lỗi xóa sản phẩm:", err);
+		alert(`Không thể xóa sản phẩm: ${err.message}`);
+	}
+}
+
+// Tải danh sách sản phẩm khi trang load
+window.onload = loadProducts;
+
+	</script>
+</body>
+</html>
