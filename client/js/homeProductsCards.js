@@ -1,5 +1,6 @@
 import { addToCart } from "./addToCart";
 import { homeQuantityToggle } from "./homeQuantityToggle";
+import { getBestImageUrl } from "./googleDriveManager";
 
 const productContainer = document.querySelector("#productContainer");
 const productTemplate = document.querySelector("#productTemplate");
@@ -19,8 +20,17 @@ export const showProductContainer = (products) => {
 
     productClone.querySelector(".category").textContent = category;
     productClone.querySelector(".productName").textContent = name;
-    productClone.querySelector(".productImage").src = image;
-    productClone.querySelector(".productImage").alt = name;
+    
+    // Use Google Drive image if available, otherwise fallback to local image
+    const imageUrl = getBestImageUrl(curProd);
+    const productImage = productClone.querySelector(".productImage");
+    productImage.src = imageUrl;
+    productImage.alt = name;
+    
+    // Add error handling for failed image loads
+    productImage.onerror = function() {
+      this.src = './public/images/placeholder.svg';
+    };
     productClone.querySelector(".productStock").textContent = stock;
     productClone.querySelector(".productDescription").textContent = description;
     productClone.querySelector(".productPrice").textContent = `₹${price}`;

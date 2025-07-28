@@ -4,6 +4,7 @@ import { getCartProductFromLS } from "./getCartProducts";
 import { incrementDecrement } from "./incrementdecrement";
 import { removeProdFromCart } from "./removeProdFromCart";
 import { updateCartProductTotal } from "./updateCartProductTotal";
+import { getBestImageUrl } from "./googleDriveManager";
 
 let cartProducts = getCartProductFromLS();
 
@@ -30,7 +31,16 @@ const showCartProduct = () => {
     productClone.querySelector("#cardValue").setAttribute("id", `card${id}`);
     productClone.querySelector(".category").textContent = category;
     productClone.querySelector(".productName").textContent = name;
-    productClone.querySelector(".productImage").src = image;
+    
+    // Use Google Drive image if available, otherwise fallback to local image
+    const imageUrl = getBestImageUrl(curProd);
+    const productImage = productClone.querySelector(".productImage");
+    productImage.src = imageUrl;
+    
+    // Add error handling for failed image loads
+    productImage.onerror = function() {
+      this.src = './public/images/placeholder.svg';
+    };
 
     productClone.querySelector(".productQuantity").textContent =
       lSActualData.quantity;
